@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
-import yt-dlp
+import yt_dlp
 
 st.title("Youtube to mp3 converter")
 
