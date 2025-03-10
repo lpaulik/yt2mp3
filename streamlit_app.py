@@ -23,4 +23,6 @@ def download_video_as_mp3(url):
     with yt_dlp.YoutubeDL(ydl_opts) as ydl:
         ydl.download([url])
 
-download_video_as_mp3(f'link')
+st.download_button(
+    data=download_video_as_mp3(f'link')
+)
