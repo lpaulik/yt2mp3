@@ -4,8 +4,10 @@ import numpy as np
 import yt_dlp
 
 st.title("Youtube to mp3 converter")
-st.text("Drop a youtube link below and voila!")
-link = st.text_input("Youtube link", "https://www.youtube.com/watch?v=")
+
+st.text("Drop a youtube link below and voila")
+
+link = st.text_input("Youtube link")
 
 def download_video_as_mp3(url, bitrate='192k'):
     ydl_opts = {
