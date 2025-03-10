@@ -22,5 +22,4 @@ def download_video_as_mp3(url, bitrate='192k'):
     with yt_dlp.YoutubeDL(ydl_opts) as ydl:
         ydl.download([url])
 
-for videoid in videoids:
-    download_video_as_mp3(f'link')
+download_video_as_mp3(f'link')
