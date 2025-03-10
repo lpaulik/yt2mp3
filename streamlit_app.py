@@ -8,14 +8,14 @@ st.text("Drop a youtube link below and voila")
 
 link = st.text_input("Youtube link")
 
-def download_video_as_mp3(url, bitrate='192k'):
+def download_video_as_mp3(url):
     ydl_opts = {
         'format': 'bestaudio/best',
         'noplaylist': True,
         'postprocessors': [{
             'key': 'FFmpegExtractAudio',
             'preferredcodec': 'mp3',
-            'preferredquality': bitrate,
+            'preferredquality': '192k',
         }],
     }
 
