@@ -3,7 +3,6 @@ import pandas as pd
 import numpy as np
 import yt_dlp
 import os
-from pathlib import Path
 
 st.title("Youtube to mp3 converter")
 
@@ -12,13 +11,10 @@ st.text("Drop a youtube link below and voila")
 link = st.text_input("Youtube link")
 
 def download_video_as_mp3(url):
-    # Get the path to the user's Downloads folder
-    downloads_path = str(Path.home() / "Downloads")
 
     ydl_opts = {
         'format': 'bestaudio/best',
         'noplaylist': True,
-        'outtmpl': os.path.join(downloads_path, '%(title)s.%(ext)s'),
         'postprocessors': [{
             'key': 'FFmpegExtractAudio',
             'preferredcodec': 'mp3',
@@ -30,9 +26,24 @@ def download_video_as_mp3(url):
         ydl.download([url])
 
 if link:
-    if st.button("Download as MP3"):
-        download_video_as_mp3(link)
-        st.success("Download started!")
+    if st.button("Convert to mp3"):
+        with st.spinner('Converting...'):
+            download_video_as_mp3(link)
+        st.success("File converted")
+
+        info_dict = yt_dlp.YoutubeDL.extract_info(link, download=False)
+        video_title = info_dict.get('title', None)
+        filename = f"{video_title}.mp3"
+        os.rename(f"{link.split('=')[-1]}.mp3", filename)
+
+        st.download_button(
+            label="Download mp3",
+            data=open(filename, "rb").read(),
+            file_name=filename,
+            mime="audio/mpeg"
+        )
+
+        os.remove(f"{link.split('=')[-1]}.mp3")
 
 
 #https://www.youtube.com/watch?v=VEfMAsFBMC8
