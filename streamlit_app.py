@@ -53,6 +53,5 @@ if link:
 
         os.remove(filename)
 
-        link = st.empty()
 
 #https://www.youtube.com/watch?v=ymgIkOXp6Ds
