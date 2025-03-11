@@ -31,7 +31,7 @@ if link:
             download_video_as_mp3(link)
         st.success("File converted")
 
-        info_dict = yt_dlp.YoutubeDL.extract_info(link, download=False)
+        info_dict = yt_dlp.YoutubeDL.extract_info(url=link, download=False)
         video_title = info_dict.get('title', None)
         filename = f"{video_title}.mp3"
         os.rename(f"{link.split('=')[-1]}.mp3", filename)
@@ -46,4 +46,4 @@ if link:
         os.remove(f"{link.split('=')[-1]}.mp3")
 
 
-#https://www.youtube.com/watch?v=VEfMAsFBMC8
+#https://www.youtube.com/watch?v=ymgIkOXp6Ds
